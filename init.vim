@@ -1,5 +1,7 @@
 " source C:\Users\lucas\AppData\local\nvim\config_files\coc_c++_config.vim
-source config_files\coc_c++_config.vim
+
+let config_path = expand('<sfile>:p:h') . '/config_files/coc_c++_config.vim'
+execute 'source' config_path
 
 
 " This line enables the true color support.
