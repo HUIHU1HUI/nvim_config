@@ -28,14 +28,14 @@ hi CursorColumn    guifg=#A0A0A0    guibg=#FFFFFF    ctermfg=grey     ctermbg=wh
 hi CursorLine      guifg=#FFFFFF    guibg=#333333    ctermfg=grey     ctermbg=white    gui=NONE         cterm=NONE
 
 "" grey fg w/black bg
-hi Comment         guifg=#2d8888    guibg=#000000    ctermfg=grey     ctermbg=black    gui=ITALIC       cterm=NONE
+hi Comment         guifg=#FFFFFA    guibg=#000000    ctermfg=grey     ctermbg=black    gui=ITALIC       cterm=NONE
 hi DiffChange      guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=NONE         cterm=NONE
 hi DiffDelete      guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=NONE         cterm=NONE
 hi DiffText        guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=NONE         cterm=NONE
 hi Directory       guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=NONE         cterm=NONE
-hi Error           guifg=#CC9999    guibg=#000000    ctermfg=grey     ctermbg=black    gui=NONE         cterm=NONE
+hi Error           guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=NONE         cterm=NONE
 hi Folded          guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=NONE         cterm=NONE
-hi Function        guifg=#a3d4d0    guibg=#000000    ctermfg=grey     ctermbg=black    gui=BOLD         cterm=BOLD
+hi Function        guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=BOLD         cterm=BOLD
 hi Identifier      guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=NONE         cterm=NONE
 hi Ignore          guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=NONE         cterm=NONE
 hi Label           guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=BOLD         cterm=BOLD
@@ -54,7 +54,7 @@ hi SpecialKey      guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=bl
 hi Statement       guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=BOLD         cterm=BOLD
 hi StatusLine      guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=BOLD         cterm=BOLD
 hi StatusLineNC    guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=ITALIC       cterm=NONE
-hi StorageClass    guifg=#99CCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=BOLD         cterm=BOLD
+hi StorageClass    guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=BOLD         cterm=BOLD
 hi Structure       guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=BOLD         cterm=BOLD
 hi TabLine         guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=NONE         cterm=NONE
 hi TabLineFill     guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=NONE         cterm=NONE
@@ -62,8 +62,8 @@ hi TabLineSel      guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=bl
 hi Title           guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=NONE         cterm=NONE
 hi Todo            guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=BOLD         cterm=BOLD
 hi Todo            guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=UNDERLINE    cterm=UNDERLINE
-hi Type            guifg=#a3d4d0    guibg=#000000    ctermfg=grey     ctermbg=black    gui=BOLD         cterm=BOLD
-hi TypeDef         guifg=#a3d4d0    guibg=#000000    ctermfg=grey     ctermbg=black    gui=BOLD         cterm=BOLD
+hi Type            guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=BOLD         cterm=BOLD
+hi TypeDef         guifg=#CCCCC0    guibg=#000000    ctermfg=grey     ctermbg=black    gui=BOLD         cterm=BOLD
 hi Underlined      guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=UNDERLINE    cterm=UNDERLINE
 hi VertSplit       guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=NONE         cterm=NONE
 hi WarningMsg      guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=NONE         cterm=NONE
@@ -77,5 +77,6 @@ hi Constant        guifg=#FFFFFF    guibg=#000000    ctermfg=white    ctermbg=bl
 hi DiffAdd         guifg=#FFFFFF    guibg=#000000    ctermfg=white    ctermbg=black    gui=NONE         cterm=NONE
 hi Number          guifg=#FFFFFF    guibg=#000000    ctermfg=white    ctermbg=black    gui=NONE         cterm=NONE
 hi Pmenu           guifg=#FFFFFF    guibg=#000000    ctermfg=white    ctermbg=black    gui=BOLD         cterm=BOLD
-hi String          guifg=#888888    guibg=#000000    ctermfg=white    ctermbg=black    gui=NONE         cterm=NONE
+" hi String          guifg=#888888    guibg=#000000    ctermfg=white    ctermbg=black    gui=NONE         cterm=NONE
+hi String          guifg=#FFFFFF    guibg=#000000    ctermfg=grey     ctermbg=black    gui=ITALIC       cterm=NONE
 
