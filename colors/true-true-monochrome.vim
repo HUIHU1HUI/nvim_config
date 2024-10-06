@@ -28,7 +28,7 @@ hi CursorColumn    guifg=#A0A0A0    guibg=#FFFFFF    ctermfg=grey     ctermbg=wh
 hi CursorLine      guifg=#FFFFFF    guibg=#333333    ctermfg=grey     ctermbg=white    gui=NONE         cterm=NONE
 
 "" grey fg w/black bg
-hi Comment         guifg=#FFFFFA    guibg=#000000    ctermfg=grey     ctermbg=black    gui=ITALIC       cterm=NONE
+hi Comment         guifg=#667E69    guibg=#000000    ctermfg=grey     ctermbg=black    gui=ITALIC       cterm=NONE
 hi DiffChange      guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=NONE         cterm=NONE
 hi DiffDelete      guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=NONE         cterm=NONE
 hi DiffText        guifg=#CCCCCC    guibg=#000000    ctermfg=grey     ctermbg=black    gui=NONE         cterm=NONE
