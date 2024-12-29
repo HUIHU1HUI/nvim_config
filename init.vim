@@ -21,7 +21,7 @@ set ignorecase              " case insensitive
 set mouse=v                 " middle-click paste with 
 set hlsearch                " highlight search 
 set incsearch               " incremental search
-set tabstop=4               " number of columns occupied by a tab 
+set tabstop=8               " number of columns occupied by a tab 
 set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
 set shiftwidth=4            " width for autoindents
 "set autoindent             " indent a new line the same amount as the line just typed
@@ -81,6 +81,7 @@ call plug#begin()
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'loctvl842/monokai-pro.nvim'
+    Plug 'mswift42/vim-themes'
 
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.6' }
@@ -106,13 +107,13 @@ call plug#begin()
 
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
-
 call plug#end()
 
 " colorscheme monokai-pro-spectrum
 " colorscheme true-monochrome
-colorscheme true-true-monochrome
-" colorscheme lunaperche
+" colorscheme true-true-monochrome
+" colorscheme darktooth
+colorscheme munich 
 " colorscheme menguless 
 
 " let b:coc_diagnostic_disable=1
@@ -181,8 +182,15 @@ local hooks = require "ibl.hooks"
 hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
     vim.api.nvim_set_hl(0, "Grey", { fg = "#555555" })
 end)
+require("ibl").setup { 
+    indent = { highlight = highlight },
+    whitespace = {
+        highlight = highlight,
+        remove_blankline_trail = false,
+    },
+    scope = { enabled = true }
+}
 
-require("ibl").setup { indent = { highlight = highlight } }
 require('telescope.builtin').buffers({ sort_lastused = true, ignore_current_buffer = true })
 
 local select_one_or_multi = function(prompt_bufnr)
@@ -203,8 +211,9 @@ end
 require('toggleterm').setup {
     size = 25,
     open_mapping = [[<leader>y]],
-    direction = 'horizontal',
-    start_in_insert = true
+    direction = 'float',
+    start_in_insert = true,
+    insert_mappings = false
 }
 
 require('telescope').setup {
@@ -216,6 +225,18 @@ require('telescope').setup {
     }
   }
 }
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
+    -- Do not display location errors
+    if result and result.diagnostics then
+        for _, diagnostic in ipairs(result.diagnostics) do
+            if diagnostic.severity == 2 then -- Error severity level
+                diagnostic.message = ""
+            end
+        end
+    end
+    vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+end
 
 EOF
 
