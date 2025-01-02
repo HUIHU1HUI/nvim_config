@@ -21,7 +21,7 @@ set ignorecase              " case insensitive
 set mouse=v                 " middle-click paste with 
 set hlsearch                " highlight search 
 set incsearch               " incremental search
-set tabstop=8               " number of columns occupied by a tab 
+set tabstop=4               " number of columns occupied by a tab 
 set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
 set shiftwidth=4            " width for autoindents
 "set autoindent             " indent a new line the same amount as the line just typed
@@ -45,22 +45,22 @@ inoremap <silent><expr> <cr> "\<c-g>u\<CR>"
 
 
 " " Get Autocomplete working properly
- inoremap! <silent><expr> <Tab>
-\ pumvisible() ? "\<C-n>" :
-\ coc#expandableOrJumpable() ?
-\ "\<C-r>=coc#snippet#next()\<Cr>":
-\ <SID>check_back_space() ? "\<Tab>" :
-\ coc#refresh()
-inoremap! <silent><expr> <S-Tab>
-\ pumvisible() ? "\<C-p>" :
-\ coc#expandableOrJumpable() ?
-\ "\<C-r>=coc#snippet#prev()\<Cr>":
-\ <SID>check_back_space() ? "\<Tab>" :
-\ coc#refresh()
-function! s:check_back_space() abort
-let col = col('.') - 1
-return !col || getline('.')[col - 1] =~# '\s'
-endfunction
+" inoremap! <silent><expr> <Tab>
+"\ pumvisible() ? "\<C-n>" :
+"\ coc#expandableOrJumpable() ?
+"\ "\<C-r>=coc#snippet#next()\<Cr>":
+"\ <SID>check_back_space() ? "\<Tab>" :
+"\ coc#refresh()
+"inoremap! <silent><expr> <S-Tab>
+"\ pumvisible() ? "\<C-p>" :
+"\ coc#expandableOrJumpable() ?
+"\ "\<C-r>=coc#snippet#prev()\<Cr>":
+"\ <SID>check_back_space() ? "\<Tab>" :
+"\ coc#refresh()
+"function! s:check_back_space() abort
+"let col = col('.') - 1
+"return !col || getline('.')[col - 1] =~# '\s'
+"endfunction
 let g:coc_snippet_next = '<Tab>'
 let g:coc_snippet_prev = '<S-Tab>' 
 
@@ -132,7 +132,21 @@ endfunction
 
 let g:airline_powerline_fonts = 1
 " let g:airline_theme = "violet"
-let g:airline_theme = "monochrome"
+" let g:airline_theme = "monochrome"
+let g:airline_theme = "silver"
+
+let g:airline#extensions#tabline#enabled = 1           " enable airline tabline                                                           
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#show_close_button = 0 " remove 'X' at the end of the tabline                                            
+let g:airline#extensions#tabline#tabs_label = ''       " can put text here like BUFFERS to denote buffers (I clear it so nothing is shown)
+let g:airline#extensions#tabline#buffers_label = ''    " can put text here like TABS to denote tabs (I clear it so nothing is shown)      
+let g:airline#extensions#tabline#fnamemod = ':t'       " disable file paths in the tab                                                    
+let g:airline#extensions#tabline#show_tab_count = 0    " dont show tab numbers on the right                                                           
+let g:airline#extensions#tabline#show_buffers = 0      " dont show buffers in the tabline                                                 
+let g:airline#extensions#tabline#tab_min_count = 2     " minimum of 2 tabs needed to display the tabline                                  
+let g:airline#extensions#tabline#show_splits = 0       " disables the buffer name that displays on the right of the tabline               
+let g:airline#extensions#tabline#show_tab_nr = 0       " disable tab numbers                                                              
+let g:airline#extensions#tabline#show_tab_type = 0     " disables the weird ornage arrow on the tabline
 
 let g:fzf_layout = { 'down': '~20%' }
 
@@ -143,10 +157,14 @@ let mapleader = "\<Space>"
 nnoremap <Leader><Leader> :w<CR>
 nnoremap <silent> <Leader>h :bp<CR>
 nnoremap <silent> <Leader>l :bn<CR>
+nnoremap <silent> <Leader>j :Ex<CR>
+nnoremap <silent> <Leader>J :Vex<CR>
+
 nnoremap <silent> <Leader>t :tabNext<CR>
 nnoremap <silent> <Leader>f :Telescope find_files<CR>
 nnoremap <silent> <Leader>b :Telescope buffers<CR>
 nnoremap <silent> <Leader>r :Telescope live_grep<CR>
+nnoremap <silent> <Leader>m :Telescope marks<CR>
 nnoremap <silent> <Leader>/ :noh<CR>
 nnoremap <silent> <Leader>Y :ToggleTermToggleAll<CR>
 
@@ -212,8 +230,10 @@ require('toggleterm').setup {
     size = 25,
     open_mapping = [[<leader>y]],
     direction = 'float',
+    insert_mappings = false,
+    direction = 'float',
     start_in_insert = true,
-    insert_mappings = false
+    persist_mode = false
 }
 
 require('telescope').setup {
@@ -221,10 +241,15 @@ require('telescope').setup {
     mappings = {
       i = {
         ['<CR>'] = select_one_or_multi,
-      }
+        ['<c-d>'] = require('telescope.actions').delete_buffer
+      },
+      n = {
+    	['<c-d>'] = require('telescope.actions').delete_buffer
+      } -- n
     }
   }
 }
+
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
     -- Do not display location errors
@@ -237,6 +262,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, result, ctx, c
     end
     vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
 end
+
 
 EOF
 

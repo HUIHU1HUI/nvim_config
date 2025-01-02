@@ -80,3 +80,5 @@ hi Pmenu           guifg=#FFFFFF    guibg=#000000    ctermfg=white    ctermbg=bl
 " hi String          guifg=#888888    guibg=#000000    ctermfg=white    ctermbg=black    gui=NONE         cterm=NONE
 hi String          guifg=#FFFFFF    guibg=#000000    ctermfg=grey     ctermbg=black    gui=ITALIC       cterm=NONE
 
+hi WinSeparator    guifg=#FFFFFF
+
