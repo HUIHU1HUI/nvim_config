@@ -1,7 +1,7 @@
 " source C:\Users\lucas\AppData\local\nvim\config_files\coc_c++_config.vim
 
 let config_path = expand('<sfile>:p:h') . '/config_files/coc_c++_config.vim'
-execute 'source' config_path
+" execute 'source' config_path
 
 
 " This line enables the true color support.
@@ -36,62 +36,29 @@ filetype plugin on
 set cursorline              " highlight current cursorline
 set ttyfast                 " Speed up scrolling in Vim
 
-"let g:ctrlp_map = '<c-p>'
-"let g:ctrlp_cmd = 'CtrlP'
-"let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-
-inoremap <silent><expr> <tab> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<TAB>"
-inoremap <silent><expr> <cr> "\<c-g>u\<CR>"
-
-
-" " Get Autocomplete working properly
-" inoremap! <silent><expr> <Tab>
-"\ pumvisible() ? "\<C-n>" :
-"\ coc#expandableOrJumpable() ?
-"\ "\<C-r>=coc#snippet#next()\<Cr>":
-"\ <SID>check_back_space() ? "\<Tab>" :
-"\ coc#refresh()
-"inoremap! <silent><expr> <S-Tab>
-"\ pumvisible() ? "\<C-p>" :
-"\ coc#expandableOrJumpable() ?
-"\ "\<C-r>=coc#snippet#prev()\<Cr>":
-"\ <SID>check_back_space() ? "\<Tab>" :
-"\ coc#refresh()
-"function! s:check_back_space() abort
-"let col = col('.') - 1
-"return !col || getline('.')[col - 1] =~# '\s'
-"endfunction
-let g:coc_snippet_next = '<Tab>'
-let g:coc_snippet_prev = '<S-Tab>' 
-
-
-inoremap <silent> <C-k> coc#refresh()
-
-"COC Notes
-"Ctrl N and Ctrl P to choose autocomplete
-"Ctrl Y to select the first one
-"Select the first completion item and confirm the completion when no item has been selected:
-inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
-\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-"
-
 call plug#begin()
-
     " Appearance
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'loctvl842/monokai-pro.nvim'
     Plug 'mswift42/vim-themes'
 
+    Plug 'vague2k/vague.nvim'
+    Plug 'rebelot/kanagawa.nvim'
+
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.6' }
     Plug 'jakemason/ouroboros'
 
+    Plug 'tiagovla/scope.nvim'
+    
+    " Plug 'folke/snacks.nvim'
+    " Plug 'mikavilpas/yazi.nvim'
+
     Plug 'nvim/nvim-lspconfig'
 
-    Plug 'lukas-reineke/indent-blankline.nvim'
-    
-    "Plug 'lukas-reineke/indent-blankline.nvim'   
+    Plug 'echasnovski/mini.nvim'
+    " Plug 'lukas-reineke/indent-blankline.nvim'
 
     " Utilities
     Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
@@ -99,7 +66,7 @@ call plug#begin()
     Plug 'sheerun/vim-polyglot'
     " Plug 'jiangmiao/auto-pairs'
     Plug 'preservim/nerdtree'
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
     Plug 'plasticboy/vim-markdown'
 
@@ -113,27 +80,23 @@ call plug#end()
 " colorscheme true-monochrome
 " colorscheme true-true-monochrome
 " colorscheme darktooth
-colorscheme munich 
+" colorscheme rams
+" colorscheme minicyan
+" colorscheme vague 
+colorscheme kanagawa-dragon
+" colorscheme munich 
 " colorscheme menguless 
 
-" let b:coc_diagnostic_disable=1
-
 "let blacklist = ['vim', 'help']
-"autocmd CursorHold * if (index(blacklist, &ft) < 0 || !coc#rpc#ready()) | silent! call CocActionAsync('doHover')
 
-nnoremap <silent> <leader>k :call ShowDocumentation()<CR>
-function! ShowDocumentation()
-  if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
-  else
-    call feedkeys('K', 'in')
-  endif
-endfunction
-
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 " let g:airline_theme = "violet"
 " let g:airline_theme = "monochrome"
-let g:airline_theme = "silver"
+" let g:airline_theme = "silver"
+" let g:airline_theme = "base16_darktooth"
+let g:airline_theme = "base16_black_metal_dark_funeral"
+" let g:airline_theme = "sol"
+" let g:airline_theme = "luna"
 
 let g:airline#extensions#tabline#enabled = 1           " enable airline tabline                                                           
 let g:airline#extensions#tabline#formatter = 'unique_tail'
@@ -147,6 +110,8 @@ let g:airline#extensions#tabline#tab_min_count = 2     " minimum of 2 tabs neede
 let g:airline#extensions#tabline#show_splits = 0       " disables the buffer name that displays on the right of the tabline               
 let g:airline#extensions#tabline#show_tab_nr = 0       " disable tab numbers                                                              
 let g:airline#extensions#tabline#show_tab_type = 0     " disables the weird ornage arrow on the tabline
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#tabline#enabled = 0
 
 let g:fzf_layout = { 'down': '~20%' }
 
@@ -160,18 +125,22 @@ nnoremap <silent> <Leader>l :bn<CR>
 nnoremap <silent> <Leader>j :Ex<CR>
 nnoremap <silent> <Leader>J :Vex<CR>
 
-nnoremap <silent> <Leader>t :tabNext<CR>
 nnoremap <silent> <Leader>f :Telescope find_files<CR>
+
 nnoremap <silent> <Leader>b :Telescope buffers<CR>
+nnoremap <silent> <Leader>B :Telescope scope buffers<CR>
+
 nnoremap <silent> <Leader>r :Telescope live_grep<CR>
 nnoremap <silent> <Leader>m :Telescope marks<CR>
 nnoremap <silent> <Leader>/ :noh<CR>
 nnoremap <silent> <Leader>Y :ToggleTermToggleAll<CR>
 
-tnoremap jk <C-\><C-n>
+nnoremap <silent> <Leader>t :tabn<CR>
+nnoremap <silent> <Leader>T :tabp<CR>
+nnoremap <silent> <Leader>g :BufferPick<CR>
+nnoremap <silent> <Leader>G :BufferPickDelete<CR>
 
-"nnoremap <A-o> :Ouroboros<CR>
-nnoremap <silent> <A-o> :CocCommand clangd.switchSourceHeader<CR>
+tnoremap jk <C-\><C-n>
 
 nnoremap :hs :split<CR> <C-w>j
 nnoremap :vs :vsplit<CR> <C-w>l
@@ -191,25 +160,14 @@ endif
 lua << EOF
 require('Comment').setup()
 
+require("scope").setup({})
+
 local highlight = {
     "Grey",
 }
 
--- vim.api.nvim_set_hl(0, "Grey", { fg = "#2d555a" })
-local hooks = require "ibl.hooks"
-hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-    vim.api.nvim_set_hl(0, "Grey", { fg = "#555555" })
-end)
-require("ibl").setup { 
-    indent = { highlight = highlight },
-    whitespace = {
-        highlight = highlight,
-        remove_blankline_trail = false,
-    },
-    scope = { enabled = true }
-}
-
 require('telescope.builtin').buffers({ sort_lastused = true, ignore_current_buffer = true })
+require("telescope").load_extension("scope")
 
 local select_one_or_multi = function(prompt_bufnr)
   local picker = require('telescope.actions.state').get_current_picker(prompt_bufnr)
@@ -233,7 +191,8 @@ require('toggleterm').setup {
     insert_mappings = false,
     direction = 'float',
     start_in_insert = true,
-    persist_mode = false
+    persist_mode = true,
+    shade_terminals = false
 }
 
 require('telescope').setup {
@@ -250,6 +209,55 @@ require('telescope').setup {
   }
 }
 
+require('mini.indentscope').setup {
+    draw = {
+        delay = 5,
+        animation = require('mini.indentscope').gen_animation.quadratic({ easing = 'out', duration = 100, unit = 'total' }),
+    },
+    options = {
+        try_as_border = true,
+    }
+}
+
+require('mini.cursorword').setup()
+
+require('kanagawa').setup({
+    colors = {
+        palette = {
+            -- change all usages of these colors
+        },
+        theme = {
+            -- change specific usages for a certain theme, or for all of them
+            wave = {
+                ui = {
+                    float = {
+                        bg = "none",
+                    },
+                },
+            },
+            dragon = {
+                syn = {
+                    parameter = "yellow",
+                },
+            },
+            all = {
+                ui = {
+                    bg_gutter = "none"
+                }
+            }
+        }
+    },
+})
+
+vim.lsp.set_log_level("debug")
+
+vim.lsp.start({
+  name = 'c-server',
+  cmd = {'clangd'},
+  root_dir = vim.fs.dirname(vim.fs.find({'.gitignore','setup.py', 'pyproject.toml'}, { upward = true })[1]),
+})
+
+vim.lsp.enable('c-server')
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
     -- Do not display location errors
