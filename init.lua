@@ -97,7 +97,9 @@ map("n", "<Leader>l", ":bn<CR>", opts)
 
 
 local actions = require('telescope.actions')
-local telescope = require('telescope.builtin')
+-- local telescope = require('telescope.builtin')
+require('telescope.builtin').buffers({ sort_lastused = true, sort_mru = true, ignore_current_buffer = true })
+
 map("n", "gd", ":Telescope lsp_definitions<CR>", opts)
 map("n", "gr", ":Telescope lsp_references<CR>", opts)
 map("n", "<Leader>f", ":Telescope find_files<CR>", opts)
@@ -194,7 +196,8 @@ require("kanagawa").setup({
   },
 })
 
-vim.cmd.colorscheme("kanagawa-dragon")
+-- vim.cmd.colorscheme("kanagawa-dragon")
+vim.cmd.colorscheme("reykjavik")
 local lspconfig = require('lspconfig')
 --
 local function switch_source_header(bufnr)
@@ -242,7 +245,7 @@ local function symbol_info()
 end
 
 lspconfig.clangd.setup( {
-  cmd = { 'clangd' },
+  cmd = { 'clangd', '--header-insertion=never' },
   filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
   root_dir = vim.fs.dirname(vim.fs.find({'.gitignore', 'compile_commands.json', 'setup.py', 'pyproject.toml'}, { upward = true })[1]),
   capabilities = require("cmp_nvim_lsp").default_capabilities(),
@@ -284,7 +287,8 @@ vim.diagnostic.config({
   underline = false,  
 })
 
-vim.g.airline_theme = "base16_black_metal_dark_funeral"
+-- vim.g.airline_theme = "base16_black_metal_dark_funeral"
+vim.g.airline_theme = "monochrome"
 vim.g.airline_powerline_fonts = 0
 vim.g.airline_extensions_tabline_enabled = 0
 vim.g.airline_extensions_whitespace_enabled = 0
