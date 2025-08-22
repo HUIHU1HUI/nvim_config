@@ -78,8 +78,6 @@ require("lazy").setup({
   sync = true,
 })
 
-require("lazy").setup("plugins")
-
 vim.g.mapleader = " "
 vim.keymap.set("i", "jk", "<Esc>")
 vim.keymap.set("t", "jk", "<C-\\><C-n>")
@@ -96,8 +94,6 @@ map("n", "<Leader>h", ":bp<CR>", opts)
 map("n", "<Leader>l", ":bn<CR>", opts)
 
 
-local actions = require('telescope.actions')
--- local telescope = require('telescope.builtin')
 require('telescope.builtin').buffers({ sort_lastused = true, sort_mru = true, ignore_current_buffer = true })
 
 map("n", "gd", ":Telescope lsp_definitions<CR>", opts)
@@ -196,8 +192,8 @@ require("kanagawa").setup({
   },
 })
 
--- vim.cmd.colorscheme("kanagawa-dragon")
-vim.cmd.colorscheme("reykjavik")
+vim.cmd.colorscheme("kanagawa-dragon")
+-- vim.cmd.colorscheme("reykjavik")
 local lspconfig = require('lspconfig')
 --
 local function switch_source_header(bufnr)
@@ -289,12 +285,19 @@ vim.diagnostic.config({
 
 -- vim.g.airline_theme = "base16_black_metal_dark_funeral"
 vim.g.airline_theme = "monochrome"
-vim.g.airline_powerline_fonts = 0
+--
+-- Airline basic configuration
+vim.g.airline_powerline_fonts = 1
 vim.g.airline_extensions_tabline_enabled = 0
-vim.g.airline_extensions_whitespace_enabled = 0
-vim.g['airline#extensions#nvimlsp#enabled'] = 0
-vim.g.airline_extensions_coc_enabled = 0         -- if you ever used coc.nvim
-vim.g.airline_extensions_languageclient_enabled = 0  -- for languageclient-neovim
-vim.g['airline#extensions#diagnostics#enabled'] = 0
-vim.g['airline#extensions#airline#theme'] = 'default'
+vim.g.airline_extensions_whitespace_enabled = 0  
+vim.g.airline_powerline_fonts = 1
+vim.g.airline_section_warning = ''
+vim.g.airline_section_error = ''
+vim.g.airline_section_z = '%l:%c'                 -- line:column
+vim.g.airline_section_x = '%{&expandtab?"Spaces":"Tabs"}' -- Just show Tabs/Spaces
+vim.g.airline_section_y = '%{&filetype}'          -- Show filetype (language) on the right
+vim.g.airline_section_b = '%f'                    -- Relative filename
+-- vim.g.airline_section_c = ''
 
+-- Disable default filetype display by overriding section c
+vim.g.airline_section_c = ''
