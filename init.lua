@@ -1,7 +1,7 @@
 require("config.lazy")
 
-vim.opt.termguicolors = true
---vim.opt.t_Co = 256
+vim.opt.termguicolors = true 
+-- vim.opt.t_Co = 256
 vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
 
 vim.opt.showmatch = true
@@ -27,7 +27,20 @@ vim.cmd("filetype plugin on")
 require("lazy").setup({
   spec = {
    -- import your plugins
-   { import = "plugins" },
+  { import = "plugins" },
+
+  {
+    "willothy/flatten.nvim",
+    config = true,
+    lazy = false,
+    priority = 1001,
+    opts = {
+      window = {
+        -- Open the new file in a separate tab
+        open = "tab",
+      },
+    }
+  },
 
   -- Appearance
   { "vim-airline/vim-airline" },
@@ -74,7 +87,7 @@ require("lazy").setup({
   -- { "neoclide/coc.nvim", branch = "release" },
   },
   install = { colorscheme = { "habamax" } },
-  checker = { enabled = true },
+  checker = { enabled = true, notify = false },
   sync = true,
 })
 
@@ -110,8 +123,8 @@ map("n", "<Leader>Y", ":ToggleTermToggleAll<CR>", opts)
 map("n", "<Leader>t", ":tabn<CR>", opts)
 map("n", "<Leader>T", ":tabp<CR>", opts)
 
-map("n", ":hs", ":split<CR><C-w>j", opts)
-map("n", ":vs", ":vsplit<CR><C-w>l", opts)
+-- map("n", ":hs", ":split<CR><C-w>j", opts)
+-- map("n", ":vs", ":vsplit<CR><C-w>l", opts)
 
 if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
   vim.opt.shell = 'powershell'
@@ -284,7 +297,8 @@ vim.diagnostic.config({
 })
 
 -- vim.g.airline_theme = "base16_black_metal_dark_funeral"
-vim.g.airline_theme = "monochrome"
+-- vim.g.airline_theme = "monochrome"
+vim.g.airline_theme = "silver"
 --
 -- Airline basic configuration
 vim.g.airline_powerline_fonts = 1
